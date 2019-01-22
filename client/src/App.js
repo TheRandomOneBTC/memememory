@@ -32,12 +32,10 @@ class App extends Component {
     amount: 0,
     charge_id: '',
     paid: false,
-    continuePlay: false,
     exit: false,
     error: false
   };
 
-  //FISHER YATES SORTING FORMULA FOR SHUFFLING AN ARRAY
   shuffle = friendArray => {
     var i = 0
       , j = 0
@@ -84,7 +82,10 @@ class App extends Component {
       .then(data => {
         if (data.data.body.paid === true) {
           this.setState({ showQR: false })
-          this.setState({ paid: true }, () => this.handleHideThis())
+          this.setState({ paid: true })
+          setTimeout(function () {
+            this.setState({ paid: false }, () => this.handleHideThis());
+          }.bind(this), 3000);
         } else { this.setState({ exit: true, showQR: false }) }
       })
       .catch(err => {
@@ -128,10 +129,12 @@ class App extends Component {
       alreadyChosenIds: [],
       correct: ''
     });
+    this.componentDidMount()
     this.setState({ friends: this.shuffle(this.state.friends) })
   };
 
   exitApp = () => {
+    this.componentDidMount()
     window.location.href = 'https://bitmemory.herokuapp.com'
   }
 
@@ -177,7 +180,7 @@ class App extends Component {
 
             <Modal
               show={this.state.error}>
-              <h1>We apologize!</h1><br /> 
+              <h1>We apologize!</h1><br />
               <h1>Meme-ory is currently not working.</h1>
               <h1>Please try again later</h1>
               <button className="standard-btn" id='modal' onClick={this.handleHideModal}>Play again?</button>
@@ -210,9 +213,14 @@ class App extends Component {
                   <h1 className='charge'><strong>After you have paid, click here to continue your game<i className="fas fa-arrow-circle-right"></i></strong><button className="standard-btn" id='modal' onClick={this.chargePlayer}>Continue Game</button></h1>
                 </span>
                 : null}
+              {this.state.paid ?
+                <span>
+                  <h1>Thanks for your payment!</h1>
+                </span>
+                : null}
               {this.state.exit ?
                 <span>
-                  <h1>Bummer...no Payment received</h1>
+                  <h1>Bummer...no Payment received. Check payment again? <i className="fas fa-arrow-circle-right"></i><button className="standard-btn" id='modal' onClick={this.chargePlayer}>Check payment?</button></h1>
                   <button className="standard-btn" id='modal' onClick={this.exitApp}>Exit</button>
                 </span>
                 : null}
