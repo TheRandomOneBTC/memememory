@@ -81,7 +81,7 @@ class App extends Component {
     API.getConfirm(this.state.charge_id)
       .then(data => {
         if (data.data.body.paid === true) {
-          this.setState({ showQR: false })
+          this.setState({ showQR: false, exit: false })
           this.setState({ paid: true })
           setTimeout(function () {
             this.setState({ paid: false }, () => this.handleHideThis());
