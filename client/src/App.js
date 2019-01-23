@@ -56,7 +56,7 @@ class App extends Component {
   showLightning = () => {
     if (this.state.charge === '') {
       this.setState({ error: true })
-    } else { this.setState({ showLightning: true }) }
+    } else { this.setState({ showLightning: true, showYes: true }) }
   }
 
   handleHideThis = () => this.setState({ showLightning: false })
@@ -96,9 +96,7 @@ class App extends Component {
   }
 
   handleClick = id => {
-
-    console.log(id)
-    if (this.state.alreadyChosenIds.indexOf(id) === -1) {
+     if (this.state.alreadyChosenIds.indexOf(id) === -1) {
       this.handleScoring();
       this.setState({ alreadyChosenIds: this.state.alreadyChosenIds.concat(id) });
     } else
@@ -113,9 +111,9 @@ class App extends Component {
     this.setState({ score: theScore })
     if (theScore > this.state.topScore) {
       this.setState({ topScore: theScore })
-      if (this.state.score === 4) {
-        this.showLightning()
-      }
+
+    } if (this.state.score === 4) {
+      this.showLightning()
     } if (this.state.score === 15) {
       this.setState({ showWin: true })
     }
@@ -124,6 +122,12 @@ class App extends Component {
 
   handleEndOfGame = () => {
     this.setState({
+      showYes: false,
+      showQR: false,
+      showWin: false,
+      showLightning: false,
+      paid: false,
+      exit: false,
       score: 0,
       topScore: this.state.topScore,
       alreadyChosenIds: [],
@@ -199,7 +203,7 @@ class App extends Component {
                     size={128}
                     bgColor={"#ffffff"}
                     fgColor={"#000000"}
-                    level={"H"}
+                    level={"L"}
                     includeMargin={false}
                     renderAs={"svg"} />
                   <h1 className='charge'><strong>Amount: {this.state.amount} satoshi</strong></h1>
