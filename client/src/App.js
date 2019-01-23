@@ -96,7 +96,7 @@ class App extends Component {
   }
 
   handleClick = id => {
-     if (this.state.alreadyChosenIds.indexOf(id) === -1) {
+    if (this.state.alreadyChosenIds.indexOf(id) === -1) {
       this.handleScoring();
       this.setState({ alreadyChosenIds: this.state.alreadyChosenIds.concat(id) });
     } else
@@ -206,6 +206,7 @@ class App extends Component {
                     level={"L"}
                     includeMargin={false}
                     renderAs={"svg"} />
+                  <h1 className='charge'><strong>Send Lightning Payment <i className="fas fa-bolt"></i></strong></h1>
                   <h1 className='charge'><strong>Amount: {this.state.amount} satoshi</strong></h1>
                   <hr />
                   <h1 className='charge2'>No mobile device? Copy payment request below! </h1>
@@ -237,9 +238,9 @@ class App extends Component {
               YOU MADE IT TO THE MOON!<br />
               <p id='connect'>Connect with the creators of BTC Meme-ory on Lightning {'  '}<i className="fas fa-bolt"></i>{'  '}
                 <Clipboard option-text={this.getText} data-tip="Copied" data-event='click' className="standard-btn" id='modal' >
-                  <i className="fas fa-paste"></i> Connection Code </Clipboard></p>
+                  <i className="fas fa-paste"></i> Connection Code </Clipboard>
               <ReactTooltip />
-
+              </p>
               <button className="standard-btn" id='modal' onClick={this.handleHideWin}>Play again?</button>
             </Modal>
 
