@@ -45,7 +45,7 @@ word-wrap: break-word;
     font-size: 20px;
 }
 
-#modal, button.standard-btn {
+#modal, button.standard-btn, #tippin-button {
     font-family: 'Ubuntu', sans-serif;
     color: white !important;
     background-color:#027fa2 !important;
@@ -53,6 +53,12 @@ word-wrap: break-word;
     border-radius: 2px !important;
     border: none !important;
     font-size: 15px !important;
+  }
+
+  #tippin-button {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    /* float: right; */
   }
 
 i.fas.fa-bolt {

@@ -65,6 +65,9 @@ class App extends Component {
 
   handleHideWin = () => this.setState({ showWin: false }, () => this.exitApp())
 
+  handleHideWin = () => this.setState({ showWin: false})
+
+
   componentDidMount() {
     API.getStrike()
       .then(data => {
@@ -96,6 +99,7 @@ class App extends Component {
   }
 
   handleClick = id => {
+    console.log(id)
     if (this.state.alreadyChosenIds.indexOf(id) === -1) {
       this.handleScoring();
       this.setState({ alreadyChosenIds: this.state.alreadyChosenIds.concat(id) });
@@ -240,7 +244,11 @@ class App extends Component {
                 <Clipboard option-text={this.getText} data-tip="Copied" data-event='click' className="standard-btn" id='modal' >
                   <i className="fas fa-paste"></i> Connection Code </Clipboard>
               <ReactTooltip />
+              Want to see more games on the lightning network? Consider a tip! 
+          
+          <div id='tippin-button' data-dest='TheRandomOne18' onClick={this.handleHideTip}></div>
               </p>
+              <hr />
               <button className="standard-btn" id='modal' onClick={this.handleHideWin}>Play again?</button>
             </Modal>
 
