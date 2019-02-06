@@ -1,9 +1,7 @@
 # Meme-ory
-Made for use with the lightning network
+A crypt-themed memory game with a payment channel enabled by the Lightning Network.
 
 ## Developer's Toolkit
-Created with React.js
-To create a React App from scratch, simply run `npx create-react-app <name of app>`
+Built with React with the following npm packages: [Confetti.js](https://www.npmjs.com/package/confetti-js), [tippin.me](https://tippin.me/), [QRCode React](https://github.com/zpao/qrcode.react), [Clipboard.js](https://clipboardjs.com/), and [API Strike](https://strike.acinq.co/)
 
-## Heroku Deployment
-coming
+## Play BitWord Guess [here](https://bitmemory.herokuapp.com)
